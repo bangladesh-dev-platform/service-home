@@ -1,96 +1,63 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ShoppingCart, ArrowRight, Star, Clock } from 'lucide-react'
+import { ShoppingCart, ArrowRight, Star, Clock, Loader2 } from 'lucide-react'
 import { SectionCard } from '../common'
+import { useLanguage } from '../../context/LanguageContext'
+import { toBanglaDigits } from '../../utils/bangla'
+import api from '../../services/api'
 
-// Dummy data - will be replaced with API
-const marketFilters = {
-  bn: ['সব', 'ইলেকট্রনিক্স', 'ফ্যাশন', 'খাবার', 'বই', 'স্বাস্থ্য'],
-  en: ['All', 'Electronics', 'Fashion', 'Food', 'Books', 'Health'],
-}
-
-const deals = [
-  {
-    id: 1,
-    title: 'স্মার্টফোন - ৫০% ছাড়',
-    titleEn: 'Smartphone - 50% Off',
-    price: '৳১৫,০০০',
-    priceEn: '৳15,000',
-    original: '৳৩০,০০০',
-    originalEn: '৳30,000',
-    shop: 'টেক শপ',
-    shopEn: 'Tech Shop',
-    rating: '4.5',
-    timeLeft: '২ দিন বাকি',
-    timeLeftEn: '2 days left',
-    discount: '-50%',
-    image: 'https://via.placeholder.com/80x80/3b82f6/ffffff?text=Phone',
-    category: 'ইলেকট্রনিক্স',
-  },
-  {
-    id: 2,
-    title: 'পুরুষদের শার্ট - ৩০% ছাড়',
-    titleEn: "Men's Shirt - 30% Off",
-    price: '৳১,৪০০',
-    priceEn: '৳1,400',
-    original: '৳২,০০০',
-    originalEn: '৳2,000',
-    shop: 'ফ্যাশন হাউস',
-    shopEn: 'Fashion House',
-    rating: '4.2',
-    timeLeft: '১ দিন বাকি',
-    timeLeftEn: '1 day left',
-    discount: '-30%',
-    image: 'https://via.placeholder.com/80x80/ef4444/ffffff?text=Shirt',
-    category: 'ফ্যাশন',
-  },
-  {
-    id: 3,
-    title: 'অর্গানিক মধু - ২৫% ছাড়',
-    titleEn: 'Organic Honey - 25% Off',
-    price: '৳৬০০',
-    priceEn: '৳600',
-    original: '৳৮০০',
-    originalEn: '৳800',
-    shop: 'প্রাকৃতিক খাদ্য',
-    shopEn: 'Natural Foods',
-    rating: '4.8',
-    timeLeft: '৩ দিন বাকি',
-    timeLeftEn: '3 days left',
-    discount: '-25%',
-    image: 'https://via.placeholder.com/80x80/f59e0b/ffffff?text=Honey',
-    category: 'খাবার',
-  },
-  {
-    id: 4,
-    title: 'প্রোগ্রামিং বই সেট - ৪০% ছাড়',
-    titleEn: 'Programming Books Set - 40% Off',
-    price: '৳১,৮০০',
-    priceEn: '৳1,800',
-    original: '৳৩,০০০',
-    originalEn: '৳3,000',
-    shop: 'বুক স্টোর',
-    shopEn: 'Book Store',
-    rating: '4.6',
-    timeLeft: '৫ দিন বাকি',
-    timeLeftEn: '5 days left',
-    discount: '-40%',
-    image: 'https://via.placeholder.com/80x80/10b981/ffffff?text=Books',
-    category: 'বই',
-  },
+// Category filters
+const CATEGORIES = [
+  { id: 'all', label: 'সব', labelEn: 'All' },
+  { id: 'electronics', label: 'ইলেকট্রনিক্স', labelEn: 'Electronics' },
+  { id: 'fashion', label: 'ফ্যাশন', labelEn: 'Fashion' },
+  { id: 'food', label: 'খাবার', labelEn: 'Food' },
+  { id: 'books', label: 'বই', labelEn: 'Books' },
 ]
 
 function MarketSection() {
-  const { t, i18n } = useTranslation()
-  const [activeFilter, setActiveFilter] = useState('সব')
-  const isBangla = i18n.language === 'bn'
+  const { t } = useTranslation()
+  const { isBangla } = useLanguage()
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [deals, setDeals] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const filters = marketFilters[i18n.language] || marketFilters.bn
-  const allFilter = isBangla ? 'সব' : 'All'
+  const fetchDeals = async (category) => {
+    setLoading(true)
+    try {
+      const response = await api.portal.market({ 
+        category: category === 'all' ? null : category,
+        limit: 4 
+      })
+      if (response.success) {
+        setDeals(response.data.items || [])
+      }
+    } catch (err) {
+      console.error('Market fetch error:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-  const filteredDeals = activeFilter === allFilter
-    ? deals
-    : deals.filter((deal) => deal.category === activeFilter)
+  useEffect(() => {
+    fetchDeals(activeCategory)
+  }, [activeCategory])
+
+  const formatPrice = (price) => {
+    const formatted = price.toLocaleString()
+    return isBangla ? '৳' + toBanglaDigits(formatted) : '৳' + formatted
+  }
+
+  const formatTimeLeft = (dateStr) => {
+    if (!dateStr) return ''
+    const expires = new Date(dateStr)
+    const now = new Date()
+    const diffDays = Math.ceil((expires - now) / (1000 * 60 * 60 * 24))
+    
+    if (diffDays <= 0) return isBangla ? 'শেষ হয়ে গেছে' : 'Expired'
+    if (diffDays === 1) return isBangla ? '১ দিন বাকি' : '1 day left'
+    return isBangla ? `${toBanglaDigits(diffDays)} দিন বাকি` : `${diffDays} days left`
+  }
 
   return (
     <SectionCard
@@ -105,68 +72,77 @@ function MarketSection() {
         </button>
       }
     >
-      {/* Filter Tabs */}
+      {/* Category Filters */}
       <div className="flex space-x-2 mb-4 overflow-x-auto text-sm pb-2">
-        {filters.map((filter) => (
+        {CATEGORIES.map((cat) => (
           <button
-            key={filter}
-            onClick={() => setActiveFilter(filter)}
+            key={cat.id}
+            onClick={() => setActiveCategory(cat.id)}
             className={`px-3 py-1 rounded-full whitespace-nowrap transition-colors ${
-              activeFilter === filter
+              activeCategory === cat.id
                 ? 'bg-orange-100 text-orange-600'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            {filter}
+            {isBangla ? cat.label : cat.labelEn}
           </button>
         ))}
       </div>
 
+      {/* Loading */}
+      {loading && (
+        <div className="flex items-center justify-center py-8">
+          <Loader2 className="h-6 w-6 animate-spin text-orange-500" />
+        </div>
+      )}
+
       {/* Deals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {filteredDeals.map((deal) => (
-          <div
-            key={deal.id}
-            className="border border-gray-200 rounded-lg p-4 hover:shadow-md cursor-pointer transition-shadow text-sm"
-          >
-            {/* Image */}
-            <div className="relative mb-3">
-              <img
-                src={deal.image}
-                alt={isBangla ? deal.title : deal.titleEn}
-                className="w-full h-20 object-cover rounded-md"
-              />
-              <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                {deal.discount}
+      {!loading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {deals.map((deal) => (
+            <div
+              key={deal.id}
+              className="border border-gray-200 rounded-lg p-4 hover:shadow-md cursor-pointer transition-shadow text-sm"
+            >
+              {/* Image */}
+              <div className="relative mb-3">
+                <img
+                  src={deal.image}
+                  alt={isBangla ? deal.title : deal.title_en}
+                  className="w-full h-20 object-cover rounded-md"
+                />
+                <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                  -{deal.discount}%
+                </div>
+              </div>
+
+              {/* Info */}
+              <h4 className="font-medium text-gray-800 mb-2 line-clamp-2">
+                {isBangla ? deal.title : deal.title_en || deal.title}
+              </h4>
+              <div className="flex items-center space-x-2 mb-2">
+                <span className="text-lg font-bold text-orange-600">
+                  {formatPrice(deal.price)}
+                </span>
+                <span className="text-sm text-gray-500 line-through">
+                  {formatPrice(deal.original_price)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between mb-2 text-xs text-gray-600">
+                <span>{isBangla ? deal.shop : deal.shop_en || deal.shop}</span>
+                <span className="flex items-center">
+                  <Star className="h-3 w-3 text-yellow-400 fill-yellow-400 mr-1" />
+                  {deal.rating}
+                </span>
+              </div>
+              <div className="flex items-center text-xs text-red-600">
+                <Clock className="h-3 w-3 mr-1" />
+                {formatTimeLeft(deal.expires_at)}
               </div>
             </div>
-
-            {/* Info */}
-            <h4 className="font-medium text-gray-800 mb-2 line-clamp-2">
-              {isBangla ? deal.title : deal.titleEn}
-            </h4>
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="text-lg font-bold text-orange-600">
-                {isBangla ? deal.price : deal.priceEn}
-              </span>
-              <span className="text-sm text-gray-500 line-through">
-                {isBangla ? deal.original : deal.originalEn}
-              </span>
-            </div>
-            <div className="flex items-center justify-between mb-2 text-xs text-gray-600">
-              <span>{isBangla ? deal.shop : deal.shopEn}</span>
-              <span className="flex items-center">
-                <Star className="h-3 w-3 text-yellow-400 fill-yellow-400 mr-1" />
-                {deal.rating}
-              </span>
-            </div>
-            <div className="flex items-center text-xs text-red-600">
-              <Clock className="h-3 w-3 mr-1" />
-              {isBangla ? deal.timeLeft : deal.timeLeftEn}
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Promo Banner */}
       <div className="mt-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg p-4 text-white flex items-center justify-between">

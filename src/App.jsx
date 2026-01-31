@@ -2,12 +2,15 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { Header, Navigation, Footer } from './components/layout'
 import { HomePage, AuthCallbackPage, NewsPage, WeatherPage, JobsPage, EducationPage, NotFoundPage } from './pages/index.jsx'
 import { HomePageSkeleton } from './components/common'
+import { InstallPrompt, OfflineIndicator, UpdatePrompt } from './components/pwa'
 import { useAuth } from './context/AuthContext'
+import { usePWA } from './context/PWAContext'
 import { AUTH_CALLBACK_PATH } from './utils/constants'
 
 function App() {
   const location = useLocation()
   const { isLoading } = useAuth()
+  const { isOnline } = usePWA()
   
   // Don't show header/nav/footer on auth callback page
   const isAuthCallback = location.pathname === AUTH_CALLBACK_PATH
@@ -21,7 +24,12 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-red-50 flex flex-col">
+    <div className={`min-h-screen bg-gradient-to-br from-green-50 to-red-50 flex flex-col ${!isOnline ? 'pt-10' : ''}`}>
+      {/* PWA Components */}
+      <OfflineIndicator />
+      <InstallPrompt />
+      <UpdatePrompt />
+      
       <Header />
       <Navigation />
       

@@ -10,3 +10,12 @@ export { default as JobsSection } from './JobsSection'
 export { default as EducationSection } from './EducationSection'
 export { default as AIAssistantSection } from './AIAssistantSection'
 export { default as MarketSection } from './MarketSection'
+
+// New widgets
+export { default as PrayerTimesSection } from './PrayerTimesSection'
+export { default as CricketSection } from './CricketSection'
+export { default as CommoditySection } from './CommoditySection'
+export { default as EmergencySection } from './EmergencySection'
+export { default as HolidaysSection } from './HolidaysSection'
+export { default as FeedbackNotice } from './FeedbackNotice'
+export { default as AppDirectory } from './AppDirectory'

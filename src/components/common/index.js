@@ -10,3 +10,4 @@ export {
   SkeletonSectionWide,
   HomePageSkeleton,
 } from './Skeleton'
+export { default as Logo, LogoMark, LogoAnimated } from './Logo'

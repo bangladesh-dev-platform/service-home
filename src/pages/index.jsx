@@ -4,23 +4,10 @@ import { Home, AlertCircle } from 'lucide-react'
 
 export { default as HomePage } from './HomePage'
 export { default as AuthCallbackPage } from './AuthCallbackPage'
-
-// Placeholder pages - will be expanded later
-export function NewsPage() {
-  return <div className="max-w-7xl mx-auto px-4 py-8"><h1 className="text-2xl font-bold">News Page</h1></div>
-}
-
-export function WeatherPage() {
-  return <div className="max-w-7xl mx-auto px-4 py-8"><h1 className="text-2xl font-bold">Weather Page</h1></div>
-}
-
-export function JobsPage() {
-  return <div className="max-w-7xl mx-auto px-4 py-8"><h1 className="text-2xl font-bold">Jobs Page</h1></div>
-}
-
-export function EducationPage() {
-  return <div className="max-w-7xl mx-auto px-4 py-8"><h1 className="text-2xl font-bold">Education Page</h1></div>
-}
+export { default as WeatherPage } from './WeatherPage'
+export { default as NewsPage } from './NewsPage'
+export { default as EducationPage } from './EducationPage'
+export { default as JobsPage } from './JobsPage'
 
 export function NotFoundPage() {
   const { t } = useTranslation()

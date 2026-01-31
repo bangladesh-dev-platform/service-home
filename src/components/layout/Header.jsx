@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Bell, Search, Settings, UserRound, Globe, LogOut, ChevronDown, User } from 'lucide-react'
+import { Bell, Search, Settings, UserRound, Globe, LogOut, ChevronDown, User, Sparkles } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { Logo } from '../common'
 
 function UserDropdown({ user, onLogout, t }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -100,21 +101,23 @@ function UserDropdown({ user, onLogout, t }) {
 function Header() {
   const { t } = useTranslation()
   const { isAuthenticated, user, login, logout, isLoading } = useAuth()
-  const { currentLang, toggleLanguage, languages } = useLanguage()
+  const { currentLang, toggleLanguage, languages, isBangla } = useLanguage()
 
   return (
     <header className="bg-white shadow-sm border-b border-green-100">
+      {/* Optional: Beta banner */}
+      <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white text-center py-1 text-xs font-medium">
+        <span className="inline-flex items-center gap-1">
+          <Sparkles className="w-3 h-3" />
+          {isBangla ? 'বেটা সংস্করণ - আপনার মতামত জানান!' : 'Beta Version - Share your feedback!'}
+          <Sparkles className="w-3 h-3" />
+        </span>
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-red-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">B</span>
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-red-500 bg-clip-text text-transparent">
-              Banglade.sh
-            </h1>
-          </Link>
+          <Logo size="md" />
 
           {/* Search Bar - Hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-2xl mx-8">

@@ -19,3 +19,31 @@ body {
   min-height: 100vh;
   background: linear-gradient(135deg, #f0fdf4, #fef2f2);
 }
+
+/* PWA Animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Offline state body adjustment */
+body.offline {
+  padding-top: 40px;
+}
+
+/* PWA safe area for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .pwa-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

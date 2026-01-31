@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="greenGradMask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#006a4e"/>
+      <stop offset="100%" style="stop-color:#004d38"/>
+    </linearGradient>
+    <linearGradient id="redGradMask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f42a41"/>
+      <stop offset="100%" style="stop-color:#d91e36"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Full background for maskable (safe zone: 80% center) -->
+  <rect width="512" height="512" fill="url(#greenGradMask)"/>
+  
+  <!-- Subtle pattern -->
+  <g opacity="0.06" fill="white">
+    <circle cx="100" cy="100" r="30"/>
+    <circle cx="412" cy="100" r="30"/>
+    <circle cx="100" cy="412" r="30"/>
+    <circle cx="412" cy="412" r="30"/>
+  </g>
+  
+  <!-- Main red circle - centered in safe zone -->
+  <circle cx="256" cy="230" r="120" fill="url(#redGradMask)"/>
+  
+  <!-- Inner highlight ring -->
+  <circle cx="256" cy="230" r="105" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+  
+  <!-- B letter - bold and clear -->
+  <text 
+    x="256" 
+    y="265" 
+    font-family="Arial, Helvetica, sans-serif" 
+    font-size="140" 
+    font-weight="900" 
+    fill="white" 
+    text-anchor="middle"
+    style="text-shadow: 0 2px 4px rgba(0,0,0,0.2)"
+  >B</text>
+  
+  <!-- Bottom accent bar -->
+  <rect x="128" y="380" width="256" height="48" rx="24" fill="rgba(255,255,255,0.15)"/>
+  
+  <!-- Tagline -->
+  <text 
+    x="256" 
+    y="412" 
+    font-family="Arial, sans-serif" 
+    font-size="22" 
+    fill="white" 
+    text-anchor="middle"
+    font-weight="500"
+  >বাংলাদেশ</text>
+</svg>
