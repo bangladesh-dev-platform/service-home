@@ -1,0 +1,117 @@
+{
+  "common": {
+    "search": "খুঁজুন",
+    "searchPlaceholder": "খুঁজুন... (Search anything)",
+    "login": "লগইন",
+    "register": "নিবন্ধন",
+    "logout": "লগআউট",
+    "profile": "প্রোফাইল",
+    "settings": "সেটিংস",
+    "notifications": "বিজ্ঞপ্তি",
+    "seeMore": "আরও দেখুন",
+    "loading": "লোড হচ্ছে...",
+    "error": "একটি সমস্যা হয়েছে",
+    "retry": "পুনরায় চেষ্টা করুন",
+    "online": "অনলাইন",
+    "offline": "অফলাইন"
+  },
+  "nav": {
+    "news": "সংবাদ",
+    "weather": "আবহাওয়া",
+    "jobs": "চাকরি",
+    "education": "শিক্ষা",
+    "notices": "সরকারি নোটিশ",
+    "entertainment": "বিনোদন",
+    "sports": "খেলাধুলা",
+    "business": "ব্যবসা",
+    "technology": "প্রযুক্তি",
+    "health": "স্বাস্থ্য"
+  },
+  "sections": {
+    "timeDate": "সময় ও তারিখ",
+    "weather": "আবহাওয়া",
+    "search": "অনুসন্ধান",
+    "news": "সংবাদ",
+    "currency": "বিনিময় হার",
+    "radio": "রেডিও",
+    "videos": "ট্রেন্ডিং ভিডিও",
+    "notices": "সরকারি নোটিশ ও ইভেন্ট",
+    "jobs": "চাকরি",
+    "education": "শিক্ষা",
+    "aiAssistant": "AI সহায়ক",
+    "market": "মিনি মার্কেট ডিল"
+  },
+  "weather": {
+    "sunny": "রৌদ্রোজ্জ্বল",
+    "cloudy": "আংশিক মেঘলা",
+    "rainy": "বৃষ্টি সম্ভাবনা",
+    "hot": "উত্তপ্ত",
+    "humid": "আর্দ্র",
+    "humidity": "আর্দ্রতা",
+    "today": "আজ",
+    "tomorrow": "কাল",
+    "dayAfter": "পরশু"
+  },
+  "news": {
+    "latest": "সর্বশেষ",
+    "national": "জাতীয়",
+    "international": "আন্তর্জাতিক",
+    "moreNews": "আরও সংবাদ দেখুন",
+    "hoursAgo": "ঘন্টা আগে"
+  },
+  "jobs": {
+    "government": "সরকারি",
+    "private": "বেসরকারি",
+    "salary": "বেতন",
+    "deadline": "শেষ তারিখ",
+    "location": "স্থান",
+    "moreJobs": "আরও চাকরি দেখুন"
+  },
+  "search": {
+    "web": "ওয়েব",
+    "news": "সংবাদ",
+    "wiki": "উইকি",
+    "video": "ভিডিও",
+    "aiChat": "AI চ্যাট",
+    "popular": "জনপ্রিয় অনুসন্ধান",
+    "searchWeb": "ওয়েব এ খুঁজুন..."
+  },
+  "ai": {
+    "greeting": "আসসালামু আলাইকুম! আমি আপনার AI সহায়ক। আপনার কোন প্রশ্ন আছে?",
+    "quickQuestions": "দ্রুত প্রশ্ন",
+    "placeholder": "আপনার প্রশ্ন লিখুন..."
+  },
+  "footer": {
+    "description": "বাংলাদেশের সব তথ্য এক জায়গায়। আপনার দৈনন্দিন প্রয়োজনীয় সব সেবা।",
+    "services": "সেবাসমূহ",
+    "support": "সহায়তা",
+    "contact": "যোগাযোগ",
+    "privacy": "গোপনীয়তা নীতি",
+    "terms": "ব্যবহারের শর্তাবলী",
+    "help": "সাহায্য",
+    "copyright": "© ২০২৫ Banglade.sh. সকল অধিকার সংরক্ষিত।"
+  },
+  "prayer": {
+    "fajr": "ফজর",
+    "dhuhr": "জোহর",
+    "asr": "আসর",
+    "maghrib": "মাগরিব",
+    "isha": "এশা"
+  },
+  "auth": {
+    "loadingTitle": "লগইন করা হচ্ছে...",
+    "loadingMessage": "অনুগ্রহ করে অপেক্ষা করুন।",
+    "successTitle": "স্বাগতম!",
+    "successMessage": "আপনি সফলভাবে লগইন করেছেন। রিডাইরেক্ট করা হচ্ছে...",
+    "errorTitle": "লগইন ব্যর্থ",
+    "missingToken": "কোনো টোকেন পাওয়া যায়নি",
+    "loginFailed": "লগইন ব্যর্থ হয়েছে",
+    "tryAgain": "আবার চেষ্টা করুন",
+    "goHome": "হোমপেজে যান"
+  },
+  "errors": {
+    "notFound": "পৃষ্ঠা পাওয়া যায়নি",
+    "notFoundDesc": "আপনি যে পৃষ্ঠাটি খুঁজছেন তা বিদ্যমান নেই বা সরানো হয়েছে।",
+    "backHome": "হোমপেজে ফিরে যান"
+  }
+}

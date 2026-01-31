@@ -1,0 +1,117 @@
+{
+  "common": {
+    "search": "Search",
+    "searchPlaceholder": "Search anything...",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "seeMore": "See More",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "nav": {
+    "news": "News",
+    "weather": "Weather",
+    "jobs": "Jobs",
+    "education": "Education",
+    "notices": "Govt. Notices",
+    "entertainment": "Entertainment",
+    "sports": "Sports",
+    "business": "Business",
+    "technology": "Technology",
+    "health": "Health"
+  },
+  "sections": {
+    "timeDate": "Time & Date",
+    "weather": "Weather",
+    "search": "Search",
+    "news": "News",
+    "currency": "Exchange Rates",
+    "radio": "Radio",
+    "videos": "Trending Videos",
+    "notices": "Govt. Notices & Events",
+    "jobs": "Jobs",
+    "education": "Education",
+    "aiAssistant": "AI Assistant",
+    "market": "Mini Market Deals"
+  },
+  "weather": {
+    "sunny": "Sunny",
+    "cloudy": "Partly Cloudy",
+    "rainy": "Chance of Rain",
+    "hot": "Hot",
+    "humid": "Humid",
+    "humidity": "Humidity",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "dayAfter": "Day After"
+  },
+  "news": {
+    "latest": "Latest",
+    "national": "National",
+    "international": "International",
+    "moreNews": "See More News",
+    "hoursAgo": "hours ago"
+  },
+  "jobs": {
+    "government": "Government",
+    "private": "Private",
+    "salary": "Salary",
+    "deadline": "Deadline",
+    "location": "Location",
+    "moreJobs": "See More Jobs"
+  },
+  "search": {
+    "web": "Web",
+    "news": "News",
+    "wiki": "Wiki",
+    "video": "Video",
+    "aiChat": "AI Chat",
+    "popular": "Popular Searches",
+    "searchWeb": "Search the web..."
+  },
+  "ai": {
+    "greeting": "Hello! I'm your AI assistant. How can I help you today?",
+    "quickQuestions": "Quick Questions",
+    "placeholder": "Type your question..."
+  },
+  "footer": {
+    "description": "All information about Bangladesh in one place. All your daily essential services.",
+    "services": "Services",
+    "support": "Support",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "help": "Help",
+    "copyright": "© 2025 Banglade.sh. All rights reserved."
+  },
+  "prayer": {
+    "fajr": "Fajr",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
+  },
+  "auth": {
+    "loadingTitle": "Signing you in...",
+    "loadingMessage": "Please wait while we complete your authentication.",
+    "successTitle": "Welcome!",
+    "successMessage": "You have been successfully authenticated. Redirecting...",
+    "errorTitle": "Authentication Failed",
+    "missingToken": "No authentication token received",
+    "loginFailed": "Login failed",
+    "tryAgain": "Try Again",
+    "goHome": "Go to Homepage"
+  },
+  "errors": {
+    "notFound": "Page Not Found",
+    "notFoundDesc": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to Homepage"
+  }
+}
